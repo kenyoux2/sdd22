@@ -3265,6 +3265,7 @@ spawn(function()
                                 v.HumanoidRootPart.CanCollide = false
                                 FarmPos = v.HumanoidRootPart.CFrame
                                 MonFarm = v.Name
+                                Click()
                                 game:GetService'VirtualUser':CaptureController()
                                 game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672),workspace.CurrentCamera.CFrame)
                                 BringMobs = false
@@ -3294,6 +3295,7 @@ spawn(function()
                                     v.HumanoidRootPart.CanCollide = false
                                     FarmPos = v.HumanoidRootPart.CFrame
                                     MonFarm = v.Name
+                                    Click()
                                     game:GetService'VirtualUser':CaptureController()
                                     game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672),workspace.CurrentCamera.CFrame)
                                 until not _G.CakePrince or not v.Parent or v.Humanoid.Health <= 0
