@@ -15,7 +15,7 @@ local function Library()
 	end
 end
 
-local Window = Library()[1]:CreateWindow({
+local Window = Fluent()[1]:CreateWindow({
 	Title = "Manake Hub",
 	SubTitle = "| "..os.date('%A, %B %d %Y'),
 	TabWidth = 160,
