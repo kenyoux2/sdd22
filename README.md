@@ -9,7 +9,7 @@ local function Library()
 			[2] = SaveManager,
 			[3] = InterfaceManager,
 		}
-	end
+	end)
 	if not Success then
 		warn("Library Error Send this message to mexuaita\n",Error)
 	end
@@ -19,7 +19,7 @@ local Window = Library()[1]:CreateWindow({
 	Title = "Manake Hub",
 	SubTitle = "| "..os.date('%A, %B %d %Y'),
 	TabWidth = 160,
-	Size = UDim2.fromOffset(600, 400),
+	Size = UDim2.fromOffset(500, 350),
 	Acrylic = true,
 	Theme = "Darker",
 	MinimizeKey = Enum.KeyCode.LeftControl
