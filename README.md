@@ -10,12 +10,8 @@ local function Library()
 			[3] = InterfaceManager,
 		}
 	end)
-	if not Success then
-		warn("Library Error Send this message to mexuaita\n",Error)
-	end
-end
 
-local Window = Fluent()[1]:CreateWindow({
+local Window = Library()[1]:CreateWindow({
 	Title = "Manake Hub",
 	SubTitle = "| "..os.date('%A, %B %d %Y'),
 	TabWidth = 160,
