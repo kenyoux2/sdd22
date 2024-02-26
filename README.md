@@ -3246,73 +3246,60 @@ ToggleCake:OnChanged(function(Value)
 end)
 Options.ToggleCake:SetValue(false)
 spawn(function()
-    while task.wait() do
-        if _G.CakePrince then
-            game.ReplicatedStorage.Remotes.CommF_:InvokeServer("CakePrinceSpawner")
-            if game.ReplicatedStorage:FindFirstChild("Cake Prince") or game:GetService("Workspace").Enemies:FindFirstChild("Cake Prince") then
-                if game:GetService("Workspace").Enemies:FindFirstChild("Cake Prince") then
-                    for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
-                        if _G.CakePrince and v.Name == "Cake Prince" and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
-                            repeat task.wait()
-                                AutoHaki()
-                                EquipTool(SelectWeapon)
-                                Tween(v.HumanoidRootPart.CFrame * Pos)
-                                v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
-                                v.HumanoidRootPart.Transparency = 1
-                                v.Humanoid.JumpPower = 0
-                                v.Humanoid.WalkSpeed = 0
-                                v.HumanoidRootPart.CanCollide = false
-                                FarmPos = v.HumanoidRootPart.CFrame
-                                MonFarm = v.Name
-                                game:GetService'VirtualUser':CaptureController()
-                                game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672),workspace.CurrentCamera.CFrame)
-                                BringMobs = false
-                            until not _G.CakePrince or not v.Parent or v.Humanoid.Health <= 0
-                            BringMobs = true
-                        end
-                    end
-                else
-                    if game:GetService("Workspace").Map.CakeLoaf.BigMirror.Other.Transparency == 0 and (CFrame.new(-1990.672607421875, 4532.99951171875, -14973.6748046875).Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude >= 2000 then
-                        Tween(CFrame.new(-2151.82153, 149.315704, -12404.9053))
-                        BringMobs = true
-                    end
-                end
-            else
-                if game:GetService("Workspace").Enemies:FindFirstChild("Cookie Crafter") or game:GetService("Workspace").Enemies:FindFirstChild("Cake Guard") or game:GetService("Workspace").Enemies:FindFirstChild("Baking Staff") or game:GetService("Workspace").Enemies:FindFirstChild("Head Baker") then
-                    for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
-                        if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
-                            if (v.Name == "Cookie Crafter" or v.Name == "Cake Guard" or v.Name == "Baking Staff" or v.Name == "Head Baker") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
-                                repeat task.wait()
+    while wait() do
+        if _G.Auto_Cake_Prince then
+            pcall(function()
+                if game.ReplicatedStorage:FindFirstChild("Cake Prince") or game:GetService("Workspace").Enemies:FindFirstChild("Cake Prince") then   
+                    if game:GetService("Workspace").Enemies:FindFirstChild("Cake Prince") then
+                        for _,_self in pairs(game:GetService("Workspace").Enemies:GetChildren()) do 
+                            if string.find(_self.Name,"Cake Prince") then
+                                repeat wait()
                                     AutoHaki()
-                                    EquipTool(SelectWeapon)
-                                    Tween(v.HumanoidRootPart.CFrame * Pos)
-                                    v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
-                                    v.HumanoidRootPart.Transparency = 1
-                                    v.Humanoid.JumpPower = 0
-                                    v.Humanoid.WalkSpeed = 0
-                                    v.HumanoidRootPart.CanCollide = false
-                                    FarmPos = v.HumanoidRootPart.CFrame
-                                    MonFarm = v.Name
-                                    game:GetService'VirtualUser':CaptureController()
-                                    game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672),workspace.CurrentCamera.CFrame)
-                                until not _G.CakePrince or not v.Parent or v.Humanoid.Health <= 0
+                                    EquipWeapon(_G.Select_Weapon)
+                                    _self.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
+                                    _self.HumanoidRootPart.CanCollide = false
+                                    getgenv().ToTarget(_self.HumanoidRootPart.CFrame * CFrame.new(0,30,0))
+                                until _G.Auto_Cake_Prince == false or not _self.Parent or _self.Humanoid.Health <= 0
+                            end    
+                        end    
+                    else
+                        for _,x in pairs(game.ReplicatedStorage:GetChildren()) do 
+                            if x.Name == "Cake Prince" or x.Name == "Dough King" then
+                                if (x.HumanoidRootPart.CFrame.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude > 1000 then
+                                    getgenv().ToTarget(CFrame.new(-2145.89722, 70.0088272, -12399.6016, 0.99999702, 1.58276379e-08, 0.00245277886, -1.57982978e-08, 1, -1.19813057e-08, -0.00245277886, 1.19425199e-08, 0.99999702))
+                                    return
+                                end
                             end
                         end
                     end
                 else
-                    local cakepos = CFrame.new(-2077, 252, -12373)
-                    if BypassTP then
-                        if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - cakepos.Position).Magnitude > 2000 then
-                            BTP(cakepos)
-                            wait(3)
-                        elseif (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - cakepos.Position).Magnitude < 2000 then
-                            Tween(cakepos)
+                    if game.Workspace.Enemies:FindFirstChild("Baking Staff") or game.Workspace.Enemies:FindFirstChild("Head Baker") or game.Workspace.Enemies:FindFirstChild("Cake Guard") or game.Workspace.Enemies:FindFirstChild("Cookie Crafter")  then
+                        for _,__self in pairs(game:GetService("Workspace").Enemies:GetChildren()) do  
+                            if string.find(__self.Name,"Baking Staff") or string.find(__self.Name,"Head Baker") or string.find(__self.Name,"Cake Guard") or string.find(__self.Name,"Cookie Crafter") and __self.Humanoid.Health > 0 then
+                                repeat wait()
+                                    AutoHaki()
+                                    EquipWeapon(_G.Select_Weapon)
+                                    StartCakeMagnet = true
+                                    __self.HumanoidRootPart.Size = Vector3.new(60, 60, 60)  
+                                    POSCAKE = __self.HumanoidRootPart.CFrame
+                                    getgenv().ToTarget(__self.HumanoidRootPart.CFrame * CFrame.new(0,30,0))
+                                until _G.Auto_Cake_Prince == false or game:GetService("ReplicatedStorage"):FindFirstChild("Cake Prince") or not __self.Parent or __self.Humanoid.Health <= 0
+                            end
                         end
                     else
-                        Tween(v.HumanoidRootPart.CFrame * Pos2)
+                        if (CFrame.new(-1820.0634765625, 210.74781799316406, -12297.49609375).Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude > 2000 then
+                            BTP(CFrame.new(-1820.0634765625, 210.74781799316406, -12297.49609375))
+                            return
+                        end
+                        getgenv().ToTarget(CFrame.new(-1820.0634765625, 210.74781799316406, -12297.49609375))
+                        for _,__x in pairs(workspace._WorldOrigin.EnemySpawns:GetChildren()) do
+                            if __x.Name == "Baking Staff" or __x.Name == "Head Baker" or __x.Name == "Cake Guard" or __x.Name == "Cookie Crafter" then local CFrameEnemySpawns = __x.CFrame  wait(0.5)
+                                getgenv().ToTarget(CFrameEnemySpawns * CFrame.new(0,30,0))
+                            end
+                        end
                     end
                 end
-            end
+            end)
         end
     end
 end)
