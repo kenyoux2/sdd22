@@ -3255,6 +3255,12 @@ ToggleCake:OnChanged(function(Value)
 end)
 Options.ToggleCake:SetValue(false)
 
+local ToggleCake = Tabs.Main:AddToggle("ToggleCake", {Title = "Auto Farm Cake Prince", Default = false })
+ToggleCake:OnChanged(function(Value)
+ _G.CakePrince = Value
+end)
+Options.ToggleCake:SetValue(false)
+
 spawn(function()
     while task.wait() do
         if _G.CakePrince then
@@ -3274,7 +3280,6 @@ spawn(function()
                                 v.HumanoidRootPart.CanCollide = false
                                 FarmPos = v.HumanoidRootPart.CFrame
                                 MonFarm = v.Name
-                                Click()
                                 game:GetService'VirtualUser':CaptureController()
                                 game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672),workspace.CurrentCamera.CFrame)
                                 BringMobs = false
@@ -3324,6 +3329,7 @@ spawn(function()
         end
     end
 end)
+
 
 
     local ToggleVatChatKiDi = Tabs.Main:AddToggle("ToggleVatChatKiDi", {Title = "Auto Farm Ectoplasm", Default = false })
