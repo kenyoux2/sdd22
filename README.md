@@ -3268,7 +3268,7 @@ spawn(function()
             if game.ReplicatedStorage:FindFirstChild("Cake Prince") or game:GetService("Workspace").Enemies:FindFirstChild("Cake Prince") then
                 if game:GetService("Workspace").Enemies:FindFirstChild("Cake Prince") then
                     for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
-                        if v.Name == "Cake Prince" and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
+                        if _G.CakePrince and v.Name == "Cake Prince" and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
                             repeat task.wait()
                                 AutoHaki()
                                 EquipTool(SelectWeapon)
@@ -3280,6 +3280,7 @@ spawn(function()
                                 v.HumanoidRootPart.CanCollide = false
                                 FarmPos = v.HumanoidRootPart.CFrame
                                 MonFarm = v.Name
+                                Click()
                                 game:GetService'VirtualUser':CaptureController()
                                 game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672),workspace.CurrentCamera.CFrame)
                                 BringMobs = false
@@ -3294,10 +3295,9 @@ spawn(function()
                     end
                 end
             else
-                if game:GetService("Workspace").Enemies:FindFirstChild("Cookie Crafter") or game:GetService("Workspace").Enemies:FindFirstChild("Cake Guard") or game:GetService("Workspace").Enemies:FindFirstChild("Baking Staff") or game:GetService("Workspace").Enemies:FindFirstChild("Head Baker") then
-                    for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
-                        if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
-                            if (v.Name == "Cookie Crafter" or v.Name == "Cake Guard" or v.Name == "Baking Staff" or v.Name == "Head Baker") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
+                if game.Workspace.Enemies:FindFirstChild("Baking Staff") or game.Workspace.Enemies:FindFirstChild("Head Baker") or game.Workspace.Enemies:FindFirstChild("Cake Guard") or game.Workspace.Enemies:FindFirstChild("Cookie Crafter")  then
+                    for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do  
+                        if string.find(v.Name,"Baking Staff") or string.find(v.Name,"Head Baker") or string.find(v.Name,"Cake Guard") or string.find(v.Name,"Cookie Crafter") and v.Humanoid.Health > 0 then
                                 repeat task.wait()
                                     AutoHaki()
                                     EquipTool(SelectWeapon)
@@ -3309,6 +3309,7 @@ spawn(function()
                                     v.HumanoidRootPart.CanCollide = false
                                     FarmPos = v.HumanoidRootPart.CFrame
                                     MonFarm = v.Name
+                                    Click()
                                     game:GetService'VirtualUser':CaptureController()
                                     game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672),workspace.CurrentCamera.CFrame)
                                 until not _G.CakePrince or not v.Parent or v.Humanoid.Health <= 0
@@ -3320,15 +3321,20 @@ spawn(function()
                     if BypassTP then
                         if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - cakepos.Position).Magnitude > 2000 then
                             BTP(cakepos)
+                            wait(3)
                         elseif (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - cakepos.Position).Magnitude < 2000 then
                             Tween(cakepos)
                         end
+                    else
+                        Tween(v.HumanoidRootPart.CFrame * Pos2)
                     end
                 end
             end
         end
     end
 end)
+
+
 
 
 
