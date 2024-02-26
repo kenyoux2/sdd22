@@ -1155,6 +1155,7 @@ for i,v in pairs(game:GetService'Players':GetChildren()) do
     end)
 end
 end
+
 function UpdateChestChams() 
 for i,v in pairs(game.Workspace:GetChildren()) do
     pcall(function()
@@ -1201,6 +1202,7 @@ for i,v in pairs(game.Workspace:GetChildren()) do
     end)
 end
 end
+
 function UpdateDevilChams() 
 for i,v in pairs(game.Workspace:GetChildren()) do
     pcall(function()
@@ -1235,6 +1237,7 @@ for i,v in pairs(game.Workspace:GetChildren()) do
     end)
 end
 end
+
 function UpdateFlowerChams() 
 for i,v in pairs(game.Workspace:GetChildren()) do
     pcall(function()
@@ -4364,7 +4367,7 @@ end
 
 
 
-_G.FastAttackDelay = 0.07
+_G.FastAttackDelay = 0.09
 
     local Client = game.Players.LocalPlayer
     local STOP = require(Client.PlayerScripts.CombatFramework.Particle)
