@@ -3249,6 +3249,12 @@ ToggleCake:OnChanged(function(Value)
 end)
 Options.ToggleCake:SetValue(false)
 
+local ToggleCake = Tabs.Main:AddToggle("ToggleCake", {Title = "Auto Farm Cake Prince", Default = false })
+ToggleCake:OnChanged(function(Value)
+ _G.CakePrince = Value
+end)
+Options.ToggleCake:SetValue(false)
+
 spawn(function()
     while task.wait() do
         if _G.CakePrince then
@@ -3256,7 +3262,7 @@ spawn(function()
             if game.ReplicatedStorage:FindFirstChild("Cake Prince") or game:GetService("Workspace").Enemies:FindFirstChild("Cake Prince") then
                 if game:GetService("Workspace").Enemies:FindFirstChild("Cake Prince") then
                     for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
-                        if _G.CakePrince and v.Name == "Cake Prince" and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
+                        if v.Name == "Cake Prince" and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
                             repeat task.wait()
                                 AutoHaki()
                                 EquipTool(SelectWeapon)
@@ -3298,7 +3304,6 @@ spawn(function()
                                     v.HumanoidRootPart.CanCollide = false
                                     FarmPos = v.HumanoidRootPart.CFrame
                                     MonFarm = v.Name
-                                    Click()
                                     game:GetService'VirtualUser':CaptureController()
                                     game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672),workspace.CurrentCamera.CFrame)
                                 until not _G.CakePrince or not v.Parent or v.Humanoid.Health <= 0
@@ -3310,19 +3315,15 @@ spawn(function()
                     if BypassTP then
                         if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - cakepos.Position).Magnitude > 2000 then
                             BTP(cakepos)
-                            wait(3)
                         elseif (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - cakepos.Position).Magnitude < 2000 then
                             Tween(cakepos)
                         end
-                    else
-                        Tween(v.HumanoidRootPart.CFrame * Pos2)
                     end
                 end
             end
         end
     end
 end)
-
 
 
     local ToggleVatChatKiDi = Tabs.Main:AddToggle("ToggleVatChatKiDi", {Title = "Auto Farm Ectoplasm", Default = false })
