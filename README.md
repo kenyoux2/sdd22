@@ -3243,24 +3243,12 @@ spawn(function()
 end)
 
 
-local ToggleCake = Tabs.Main:AddToggle("ToggleCake", {Title = "Auto Farm Cake Prince", Default = false })
-ToggleCake:OnChanged(function(Value)
- _G.CakePrince = Value
-end)
-Options.ToggleCake:SetValue(false)
 
 local ToggleCake = Tabs.Main:AddToggle("ToggleCake", {Title = "Auto Farm Cake Prince", Default = false })
 ToggleCake:OnChanged(function(Value)
  _G.CakePrince = Value
 end)
 Options.ToggleCake:SetValue(false)
-
-local ToggleCake = Tabs.Main:AddToggle("ToggleCake", {Title = "Auto Farm Cake Prince", Default = false })
-ToggleCake:OnChanged(function(Value)
- _G.CakePrince = Value
-end)
-Options.ToggleCake:SetValue(false)
-
 spawn(function()
     while task.wait() do
         if _G.CakePrince then
