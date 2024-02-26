@@ -3245,6 +3245,8 @@ ToggleCake:OnChanged(function(Value)
  _G.CakePrince = Value
 end)
 Options.ToggleCake:SetValue(false)
+
+
 spawn(function()
     while wait() do
         if _G.Auto_Cake_Prince then
