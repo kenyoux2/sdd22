@@ -1155,7 +1155,6 @@ for i,v in pairs(game:GetService'Players':GetChildren()) do
     end)
 end
 end
-
 function UpdateChestChams() 
 for i,v in pairs(game.Workspace:GetChildren()) do
     pcall(function()
@@ -1202,7 +1201,6 @@ for i,v in pairs(game.Workspace:GetChildren()) do
     end)
 end
 end
-
 function UpdateDevilChams() 
 for i,v in pairs(game.Workspace:GetChildren()) do
     pcall(function()
@@ -1237,7 +1235,6 @@ for i,v in pairs(game.Workspace:GetChildren()) do
     end)
 end
 end
-
 function UpdateFlowerChams() 
 for i,v in pairs(game.Workspace:GetChildren()) do
     pcall(function()
@@ -2317,7 +2314,7 @@ ImageButton.Position = UDim2.new(0.10615778, 0, 0.16217947, 0)
 ImageButton.Size = UDim2.new(0.0627121851, 0, 0.107579626, 0)
 ImageButton.Image = "rbxassetid://16155194387"
 
-UICorner.CornerRadius = UDim.new(0, 50)
+UICorner.CornerRadius = UDim.new(0, 30)
 UICorner.Parent = ImageButton
 
 UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(244, 0, 0)), ColorSequenceKeypoint.new(0.32, Color3.fromRGB(146, 255, 251)), ColorSequenceKeypoint.new(0.65, Color3.fromRGB(180, 255, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(96, 255, 231))}
@@ -3243,12 +3240,12 @@ spawn(function()
 end)
 
 
-
 local ToggleCake = Tabs.Main:AddToggle("ToggleCake", {Title = "Auto Farm Cake Prince", Default = false })
 ToggleCake:OnChanged(function(Value)
  _G.CakePrince = Value
 end)
 Options.ToggleCake:SetValue(false)
+
 spawn(function()
     while task.wait() do
         if _G.CakePrince then
@@ -3283,9 +3280,10 @@ spawn(function()
                     end
                 end
             else
-                if game.Workspace.Enemies:FindFirstChild("Baking Staff") or game.Workspace.Enemies:FindFirstChild("Head Baker") or game.Workspace.Enemies:FindFirstChild("Cake Guard") or game.Workspace.Enemies:FindFirstChild("Cookie Crafter")  then
-                    for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do  
-                        if string.find(v.Name,"Baking Staff") or string.find(v.Name,"Head Baker") or string.find(v.Name,"Cake Guard") or string.find(v.Name,"Cookie Crafter") and v.Humanoid.Health > 0 then
+                if game:GetService("Workspace").Enemies:FindFirstChild("Cookie Crafter") or game:GetService("Workspace").Enemies:FindFirstChild("Cake Guard") or game:GetService("Workspace").Enemies:FindFirstChild("Baking Staff") or game:GetService("Workspace").Enemies:FindFirstChild("Head Baker") then
+                    for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
+                        if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
+                            if (v.Name == "Cookie Crafter" or v.Name == "Cake Guard" or v.Name == "Baking Staff" or v.Name == "Head Baker") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
                                 repeat task.wait()
                                     AutoHaki()
                                     EquipTool(SelectWeapon)
@@ -3321,8 +3319,6 @@ spawn(function()
         end
     end
 end)
-
-
 
 
 
@@ -4368,7 +4364,7 @@ end
 
 
 
-_G.FastAttackDelay = 0.09
+_G.FastAttackDelay = 0.07
 
     local Client = game.Players.LocalPlayer
     local STOP = require(Client.PlayerScripts.CombatFramework.Particle)
